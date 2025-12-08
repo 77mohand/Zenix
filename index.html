@@ -131,6 +131,25 @@
         }
         .hero-text p { color: var(--text-gray); margin-bottom: 30px; line-height: 1.7; font-size: 1.1rem; }
         
+        /* إضافة ستايل لأيقونات السوشيال ميديا في الهيرو */
+        .hero-social {
+            margin-top: 25px;
+            display: flex;
+            gap: 20px;
+            justify-content: flex-start; /* لليسار في وضعية ltr */
+        }
+        .hero-social a {
+            font-size: 2rem;
+            color: var(--text-gray);
+        }
+        .hero-social a:hover {
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+        .ar-mode .hero-social {
+            justify-content: flex-end; /* لليمين في وضعية rtl */
+        }
+
         .hero-image-container {
             width: 40%;
             display: flex;
@@ -298,9 +317,21 @@
             background: #000;
             border-top: 1px solid #111;
         }
-        footer .social-icons { margin: 20px 0; display: flex; justify-content: center; gap: 20px; }
-        footer .social-icons a { color: var(--text-light); font-size: 1.5rem; }
-        footer .social-icons a:hover { color: var(--primary); }
+        /* تعديل ستايل أيقونات السوشيال ميديا في الفوتر */
+        footer .social-icons { 
+            margin: 20px 0; 
+            display: flex; 
+            justify-content: center; 
+            gap: 20px; 
+        }
+        footer .social-icons a { 
+            color: var(--text-light); 
+            font-size: 1.5rem; 
+        }
+        footer .social-icons a:hover { 
+            color: var(--primary); 
+            transform: scale(1.1);
+        }
 
         /* --- Responsive Design --- */
         @media (max-width: 1024px) {
@@ -309,6 +340,7 @@
             .hero-image-container { max-width: 80%; margin: 0 auto; }
             .hero-text h1 { font-size: 3.5rem; }
             .section { padding: 80px 5%; }
+            .hero-social { justify-content: center; } /* توسيط الأيقونات في الأجهزة الصغيرة */
         }
         @media (max-width: 600px) {
              .hero-text h1 { font-size: 2.5rem; }
@@ -316,6 +348,10 @@
              .per-project-table th, .per-project-table td { padding: 8px 10px; font-size: 0.85rem; }
              .per-project-table table { display: block; overflow-x: auto; white-space: nowrap; }
         }
+
+        /* RTL Styles for Arabic */
+        .ar-mode .testimonial-card blockquote { border-right: none; border-left: 2px solid var(--text-gray); padding-right: 0; padding-left: 15px; }
+        .ar-mode .per-project-table th, .ar-mode .per-project-table td { text-align: left; }
     </style>
 </head>
 <body id="body" data-lang="en">
@@ -344,9 +380,15 @@
             <h1 data-en="We Build Your Visual Brand." data-ar="نحن نبني علامتك التجارية المرئية.">We Build Your Visual Brand.</h1>
             <p data-en="ZENIX Agency transforms raw ideas into powerful digital assets, ensuring your content captivates viewers beyond the first three seconds." data-ar="وكالة ZENIX تحول الأفكار النيئة إلى أصول رقمية قوية، لضمان أن محتواك يجذب المشاهدين لما بعد الثلاث ثواني الأولى.">ZENIX Agency transforms raw ideas into powerful digital assets, ensuring your content captivates viewers beyond the first three seconds.</p>
             <a href="#pricing" class="contact-btn package-btn" data-en="View Our Packages" data-ar="شاهد باقاتنا">View Our Packages</a>
+            
+            <div class="hero-social">
+                <a href="https://www.facebook.com/profile.php?id=61584517154726" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com/zenix_agency/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@zenix.agency?lang=ar" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
         </div>
         <div class="hero-image-container">
-            <img src="Zenix Agency .jpg" alt="Zenix Agency Logo">
+            <img src="Zenix Agency .jpg" alt="Zenix Agency Logo"> 
         </div>
     </section>
 
@@ -355,7 +397,7 @@
         <p class="section-subtitle" data-en="Why ZENIX is your strategic content partner." data-ar="لماذا ZENIX هي شريكك الاستراتيجي في المحتوى.">Why ZENIX is your strategic content partner.</p>
         <div class="about-text">
             <p data-en='In an era where audience attention spans shrink to mere seconds, editing or design is no longer just an additional service—it is the very quality of the final product itself. ZENIX Agency, founded by Mohand Amr, is an integrated group established to offer a comprehensive solution that goes beyond mere video editing.' data-ar='في عصر يتقلص فيه انتباه الجمهور إلى ثوانٍ معدودة، لم يعد المونتاج أو التصميم مجرد خدمة إضافية، بل هو جودة المنتج النهائي ذاته. وكالة ZENIX هي مجموعة متكاملة تأسست على يد مهند عمرو، لتقدم حلاً شاملاً يتجاوز مجرد تحرير الفيديو.'>In an era where audience attention spans shrink to mere seconds, editing or design is no longer just an additional service—it is the very quality of the final product itself. ZENIX Agency, founded by Mohand Amr, is an integrated group established to offer a comprehensive solution that goes beyond mere video editing.</p>
-            <p data-en='We recognize that the viewer often gets bored and barely makes it past the first three seconds. Therefore, our role is to transform raw ideas into powerful digital assets that guarantee viewer retention until the very last second.' data-ar='نحن ندرك أن المشاهد بات يمل ويكتفي بثلاث ثوانٍ بالكاد. لذا، يكمن دورنا في تحويل الأفكار النيّئة إلى أصول رقمية قوية تضمن الاحتفاظ بالمشاهد حتى الثانية الأخيرة.'>We recognize that the viewer often gets bored and barely makes it past the first three seconds. Therefore, our role is to <strong>transform raw ideas into powerful digital assets that guarantee viewer retention until the very last second.</strong></p>
+            <p data-en='We recognize that the viewer often gets bored and barely makes it past the first three seconds. Therefore, our role is to transform raw ideas into powerful digital assets that guarantee viewer retention until the very last second.' data-ar='نحن ندرك أن المشاهد بات يمل ويكتفي بثلاث ثوانٍ بالكاد. لذا، يكمن دورنا في تحويل الأفكار النيّئة إلى أصول رقمية قوية تضمن الاحتفاظ بالمشاهد حتى الثانية الأخيرة.'>We recognize that the viewer often gets bored and barely makes it past the first three seconds. Therefore, our role is to **transform raw ideas into powerful digital assets that guarantee viewer retention until the very last second.**</p>
             <p data-en='We operate as a strategic partner in your journey, where our services include: Strategic Content Development (from idea generation to professional scriptwriting), Full Visual Identity Management (professional editing, motion graphics, and high-CTR thumbnail design), and Social Media Channel Management (to ensure your message reaches the right audience at the right time).' data-ar='نحن نعمل كشريك استراتيجي في رحلتك، حيث تشمل خدماتنا: تطوير المحتوى الاستراتيجي (بدءاً من توليد فكرة الفيديو وصولاً إلى كتابة سكريبت احترافي يضمن أعلى نسبة تحويل)، الإدارة الكاملة للهوية البصرية (مونتاج احترافي، موشن جرافيك متقدم، وتصميم صور مصغرة ترفع نسبة النقر)، وإدارة قنوات السوشيال ميديا (لضمان وصول رسالتك للجمهور الصحيح في الوقت المناسب).'>We operate as a strategic partner in your journey, where our services include: Strategic Content Development (from idea generation to professional scriptwriting), Full Visual Identity Management (professional editing, motion graphics, and high-CTR thumbnail design), and Social Media Channel Management (to ensure your message reaches the right audience at the right time).</p>
             <p data-en='At ZENIX, we believe that investing in editing is a direct investment in the value of your product and brand. Our mission is to help clients (content creators, teachers, and business owners) multiply their views, impact, and sales through content crafted with a genuine feel that reaches the audience directly.' data-ar='في ZENIX، نحن نؤمن بأن الاستثمار في المونتاج هو استثمار مباشر في قيمة منتجك وعلامتك التجارية. مهمتنا هي مساعدة العملاء (صناع محتوى، مدرسين، وأصحاب أعمال) على مضاعفة مشاهداتهم وتأثيرهم ومبيعاتهم عبر محتوى مصنوع بإحساس يصل مباشرة إلى الجمهور.'>At ZENIX, we believe that **investing in editing is a direct investment in the value of your product and brand**. Our mission is to help clients multiply their views, impact, and sales through content crafted with a genuine feel that reaches the audience directly.</p>
         </div>
@@ -547,76 +589,54 @@
                     <strong>Dr. Khalid H.</strong> <span>Educational Consultant</span>
                 </div>
             </div>
-             <div class="testimonial-card">
-                <blockquote data-en="They mastered the 3-second rule! Our Reel retention rates are off the charts, leading to massive profile growth." data-ar="لقد أتقنوا قاعدة الـ 3 ثواني! معدلات الاحتفاظ في الريلز لدينا فاقت التوقعات، مما أدى إلى نمو هائل في ملفنا الشخصي.">"They mastered the 3-second rule! Our Reel retention rates are off the charts, leading to massive profile growth."</blockquote>
-                <div class="client-info">
-                    <strong>Fatima R.</strong> <span>E-commerce Founder</span>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <blockquote data-en="The Pro Package is the best investment we made. We got quality, quantity, and strategy all in one place." data-ar="باقة المحترف الصاعد هي أفضل استثمار قمنا به. حصلنا على الجودة، الكمية، والاستراتيجية، كل ذلك في مكان واحد.">"The Pro Package is the best investment we made. We got quality, quantity, and strategy all in one place."</blockquote>
-                <div class="client-info">
-                    <strong>Mohamed G.</strong> <span>Marketing Manager</span>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <blockquote data-en="Their Motion Graphics work is top-tier. It elevates complex data into easily digestible and highly engaging content." data-ar="عملهم في الموشن جرافيك من الدرجة الأولى. إنه يرتقي بالبيانات المعقدة إلى محتوى سهل الهضم وجذاب للغاية.">"Their Motion Graphics work is top-tier. It elevates complex data into easily digestible and highly engaging content."</blockquote>
-                <div class="client-info">
-                    <strong>Amr F.</strong> <span>Financial Analyst</span>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <blockquote data-en="True partnership. ZENIX handles our entire content pipeline, allowing us to focus purely on the core business." data-ar="شراكة حقيقية. ZENIX تتولى خط إنتاج المحتوى بالكامل، مما سمح لنا بالتركيز على العمل الأساسي.">"True partnership. ZENIX handles our entire content pipeline, allowing us to focus purely on the core business."</blockquote>
-                <div class="client-info">
-                    <strong>Nour E.</strong> <span>CEO, Startup</span>
-                </div>
-            </div>
         </div>
     </section>
 
     <footer id="contact">
-        <h2 style="margin-bottom:20px; font-size: 2rem;" data-en="Ready to Scale Your Influence?" data-ar="هل أنت مستعد لتوسيع نفوذك؟">Ready to Scale Your Influence?</h2>
-        <p style="margin-bottom:30px; color:var(--text-gray);" data-en="Let's build a content strategy that guarantees massive growth. Contact us today." data-ar="دعنا نبني استراتيجية محتوى تضمن نمواً هائلاً. تواصل معنا اليوم.">Let's build a content strategy that guarantees massive growth. Contact us today.</p>
-        
-        <a href="mailto:contact@zenixagency.com" class="contact-btn" style="margin-bottom:30px;" data-en="Email Us" data-ar="راسلنا عبر البريد الإلكتروني">Email Us</a>
+        <div class="logo">ZENIX <span>Agency</span></div>
         
         <div class="social-icons">
-             <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-             <a href="#"><i class="fa-brands fa-instagram"></i></a>
-             <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-             <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61584517154726" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.instagram.com/zenix_agency/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@zenix.agency?lang=ar" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
         </div>
         
-        <p style="font-size:0.9rem; color:#555;">ZENIX Agency &copy; 2025 | Content Architects</p>
+        <p style="margin-bottom: 10px;">
+            <a href="mailto:mohandamr4433@gmail.com" style="color: var(--text-light);"><i class="fa-solid fa-envelope" style="color: var(--primary); margin-left: 5px;"></i> mohandamr4433@gmail.com</a>
+        </p>
+        
+        <p style="color: var(--text-gray); font-size: 0.9rem;">
+            © 2025 ZENIX Agency. All rights reserved.
+        </p>
     </footer>
 
     <script>
+        // دالة تبديل اللغة
         function toggleLanguage() {
             const body = document.getElementById('body');
-            const currentLang = body.getAttribute('data-lang');
-            const newLang = currentLang === 'en' ? 'ar' : 'en';
-            
+            let currentLang = body.getAttribute('data-lang');
+            let newLang = currentLang === 'en' ? 'ar' : 'en';
+
             body.setAttribute('data-lang', newLang);
             body.setAttribute('dir', newLang === 'ar' ? 'rtl' : 'ltr');
-            
-            const elements = document.querySelectorAll('[data-en], [data-ar]');
-            
-            elements.forEach(element => {
-                const translation = element.getAttribute(`data-${newLang}`);
-                if (translation) {
-                    element.textContent = translation;
+            body.classList.toggle('ar-mode', newLang === 'ar');
+
+            // تحديث النصوص
+            document.querySelectorAll('[data-en], [data-ar]').forEach(element => {
+                const text = element.getAttribute('data-' + newLang);
+                if (element.tagName === 'A' || element.tagName === 'BUTTON') {
+                    element.textContent = text;
+                } else if (element.tagName === 'H2' || element.tagName === 'H3' || element.tagName === 'P') {
+                    element.innerHTML = text;
+                } else if (element.tagName === 'SPAN') {
+                    element.textContent = text;
                 }
             });
 
-            // Handle the button text specifically
-            const langButton = document.querySelector('.lang-toggle');
-            if (newLang === 'ar') {
-                langButton.textContent = 'English';
-            } else {
-                langButton.textContent = 'عربي';
-            }
+            // تحديث زر تبديل اللغة نفسه
+            const langToggleBtn = document.querySelector('.lang-toggle');
+            langToggleBtn.textContent = langToggleBtn.getAttribute('data-' + newLang);
         }
     </script>
-
 </body>
 </html>
