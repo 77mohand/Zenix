@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENIX Agency | Content Creation & Digital Growth</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Color Variables (Dark/Orange Theme) --- */
+        :root {
+            --bg-dark: #000000;       /* Pure Black */
+            --card-bg: #111111;       /* Dark Gray for cards */
+            --primary: #FF7F50;       /* Coral/Orange Accent */
+            --accent: #FFD700;        /* Gold/Yellow for highlights */
+            --text-light: #ffffff;
+            --text-gray: #aaaaaa;
+            --header-font: 'Montserrat', sans-serif;
+            --main-font: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--main-font);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Gradient glow effect from the example image */
+            background-image: radial-gradient(circle at 5% 5%, rgba(255, 127, 80, 0.1) 0%, transparent 25%),
+                              radial-gradient(circle at 95% 95%, rgba(255, 215, 0, 0.1) 0%, transparent 25%);
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        .section { padding: 100px 8%; position: relative; }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 10px;
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 60px;
+            font-size: 1.1rem;
+        }
+
+        /* --- Header/Navbar --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(8px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 127, 80, 0.2);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--text-light);
+        }
+        .logo span { color: var(--primary); }
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-weight: 500; }
+        .nav-links a:hover { color: var(--primary); }
+
+        .actions { display: flex; align-items: center; gap: 15px; }
+
+        .contact-btn {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            color: var(--bg-dark);
+            box-shadow: 0 4px 15px rgba(255, 127, 80, 0.5);
+        }
+        
+        .lang-toggle {
+            background: none;
+            border: 1px solid var(--text-gray);
+            color: var(--text-light);
+            padding: 8px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .lang-toggle:hover { background: var(--primary); border-color: var(--primary); color: var(--bg-dark); }
+
+
+        /* --- Hero Section --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 150px 8% 50px;
+            gap: 50px;
+        }
+        .hero-text { max-width: 60%; }
+        .hero-text h1 { 
+            font-size: 4.5rem; 
+            font-weight: 900; 
+            margin-bottom: 10px; 
+            background: linear-gradient(to right, var(--text-light), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-text h2 { 
+            font-size: 2rem; 
+            color: var(--accent); 
+            margin-bottom: 25px; 
+            font-weight: 700;
+        }
+        .hero-text p { color: var(--text-gray); margin-bottom: 30px; line-height: 1.7; font-size: 1.1rem; }
+        
+        .hero-image-container {
+            width: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .hero-image-container img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 0 50px rgba(255, 127, 80, 0.6);
+            border: 5px solid var(--primary);
+        }
+
+        /* --- About Us --- */
+        .about-text {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .about-text p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        .about-text strong { color: var(--primary); font-weight: 700; }
+
+
+        /* --- Services --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 127, 80, 0.3);
+            transition: 0.4s;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card:hover { transform: translateY(-7px); border-color: var(--accent); }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .service-card h3 { margin-bottom: 10px; color: var(--primary); }
+        .service-card p { color: var(--text-gray); font-size: 0.95rem; }
+
+        /* --- Projects/Works --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .project-item {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+        .project-item:hover { transform: scale(1.03); }
+        .project-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .project-info { padding: 15px; }
+        .project-info h4 { color: var(--accent); margin-bottom: 5px; }
+        .project-info p { color: var(--text-gray); font-size: 0.9rem; }
+
+
+        /* --- Testimonials --- */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .testimonial-card blockquote {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-style: italic;
+            line-height: 1.6;
+            border-right: 2px solid var(--text-gray);
+            padding-right: 15px;
+        }
+
+        .client-info strong {
+            font-weight: bold;
+            display: block;
+            color: var(--primary);
+        }
+        .client-info span {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* --- Pricing Table --- */
+        .pricing-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .pricing-plan {
+            background: var(--card-bg);
+            padding: 40px 20px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 127, 80, 0.3);
+            transition: 0.3s;
+        }
+        .pricing-plan:hover { border-color: var(--accent); transform: translateY(-5px); }
+
+        .pricing-plan h3 { font-size: 1.8rem; color: var(--accent); margin-bottom: 20px; }
+        .price { font-size: 3rem; font-weight: 900; color: var(--primary); margin-bottom: 20px; }
+        .price span { font-size: 1rem; color: var(--text-gray); font-weight: 400; }
+        .features li { padding: 10px 0; border-bottom: 1px dashed rgba(255, 255, 255, 0.1); color: var(--text-light); font-size: 0.95rem; }
+        .features li:last-child { border-bottom: none; }
+        .features i { color: var(--accent); margin-left: 10px; }
+
+        .package-btn { margin-top: 30px; }
+        
+        .per-project-table {
+            background: #1e1e1e;
+            margin-top: 60px;
+            padding: 30px;
+            border-radius: 15px;
+        }
+        .per-project-table h4 { color: var(--primary); margin-bottom: 20px; text-align: center; font-size: 1.5rem; }
+        .per-project-table table { width: 100%; border-collapse: collapse; }
+        .per-project-table th, .per-project-table td { padding: 12px 15px; text-align: right; border-bottom: 1px solid #333; }
+        .per-project-table th { color: var(--accent); font-weight: bold; }
+        .per-project-table td:last-child { color: var(--text-light); font-weight: 700; }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 50px 8%;
+            background: #000;
+            border-top: 1px solid #111;
+        }
+        footer .social-icons { margin: 20px 0; display: flex; justify-content: center; gap: 20px; }
+        footer .social-icons a { color: var(--text-light); font-size: 1.5rem; }
+        footer .social-icons a:hover { color: var(--primary); }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 1024px) {
+            .hero { flex-direction: column-reverse; text-align: center; }
+            .hero-text { max-width: 100%; }
+            .hero-image-container { max-width: 80%; margin: 0 auto; }
+            .hero-text h1 { font-size: 3.5rem; }
+            .section { padding: 80px 5%; }
+        }
+        @media (max-width: 600px) {
+             .hero-text h1 { font-size: 2.5rem; }
+             .hero-text h2 { font-size: 1.5rem; }
+             .per-project-table th, .per-project-table td { padding: 8px 10px; font-size: 0.85rem; }
+             .per-project-table table { display: block; overflow-x: auto; white-space: nowrap; }
+        }
+    </style>
+</head>
+<body id="body" data-lang="en">
+
+    <header>
+        <div class="logo">ZENIX <span>Agency</span></div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home" data-en="Home" data-ar="الرئيسية">Home</a></li>
+                <li><a href="#about" data-en="About Us" data-ar="من نحن">About Us</a></li>
+                <li><a href="#services" data-en="Services" data-ar="خدماتنا">Services</a></li>
+                <li><a href="#projects" data-en="Our Works" data-ar="أعمالنا">Our Works</a></li>
+                <li><a href="#pricing" data-en="Pricing" data-ar="الأسعار">Pricing</a></li>
+                <li><a href="#testimonials" data-en="Testimonials" data-ar="آراء العملاء">Testimonials</a></li>
+            </ul>
+        </nav>
+        <div class="actions">
+            <button class="lang-toggle" onclick="toggleLanguage()" data-en="عربي" data-ar="English">عربي</button>
+            <a href="#contact" class="contact-btn" data-en="Get Started" data-ar="ابدأ الآن">Get Started</a>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-text">
+            <h2 data-en="Content Architects & Digital Growth Specialists" data-ar="مهندسو المحتوى ومتخصصو النمو الرقمي">Content Architects & Digital Growth Specialists</h2>
+            <h1 data-en="We Build Your Visual Brand." data-ar="نحن نبني علامتك التجارية المرئية.">We Build Your Visual Brand.</h1>
+            <p data-en="ZENIX Agency transforms raw ideas into powerful digital assets, ensuring your content captivates viewers beyond the first three seconds." data-ar="وكالة ZENIX تحول الأفكار النيئة إلى أصول رقمية قوية، لضمان أن محتواك يجذب المشاهدين لما بعد الثلاث ثواني الأولى.">ZENIX Agency transforms raw ideas into powerful digital assets, ensuring your content captivates viewers beyond the first three seconds.</p>
+            <a href="#pricing" class="contact-btn package-btn" data-en="View Our Packages" data-ar="شاهد باقاتنا">View Our Packages</a>
+        </div>
+        <div class="hero-image-container">
+            <img src="Zenix Agency .jpg" alt="Zenix Agency Logo">
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <h2 class="section-title" data-en="Our Mission" data-ar="رسالتنا">Our Mission</h2>
+        <p class="section-subtitle" data-en="Why ZENIX is your strategic content partner." data-ar="لماذا ZENIX هي شريكك الاستراتيجي في المحتوى.">Why ZENIX is your strategic content partner.</p>
+        <div class="about-text">
+            <p data-en='In an era where audience attention spans shrink to mere seconds, editing or design is no longer just an additional service—it is the very quality of the final product itself. ZENIX Agency, founded by Mohand Amr, is an integrated group established to offer a comprehensive solution that goes beyond mere video editing.' data-ar='في عصر يتقلص فيه انتباه الجمهور إلى ثوانٍ معدودة، لم يعد المونتاج أو التصميم مجرد خدمة إضافية، بل هو جودة المنتج النهائي ذاته. وكالة ZENIX هي مجموعة متكاملة تأسست على يد مهند عمرو، لتقدم حلاً شاملاً يتجاوز مجرد تحرير الفيديو.'>In an era where audience attention spans shrink to mere seconds, editing or design is no longer just an additional service—it is the very quality of the final product itself. ZENIX Agency, founded by Mohand Amr, is an integrated group established to offer a comprehensive solution that goes beyond mere video editing.</p>
+            <p data-en='We recognize that the viewer often gets bored and barely makes it past the first three seconds. Therefore, our role is to transform raw ideas into powerful digital assets that guarantee viewer retention until the very last second.' data-ar='نحن ندرك أن المشاهد بات يمل ويكتفي بثلاث ثوانٍ بالكاد. لذا، يكمن دورنا في تحويل الأفكار النيّئة إلى أصول رقمية قوية تضمن الاحتفاظ بالمشاهد حتى الثانية الأخيرة.'>We recognize that the viewer often gets bored and barely makes it past the first three seconds. Therefore, our role is to <strong>transform raw ideas into powerful digital assets that guarantee viewer retention until the very last second.</strong></p>
+            <p data-en='We operate as a strategic partner in your journey, where our services include: Strategic Content Development (from idea generation to professional scriptwriting), Full Visual Identity Management (professional editing, motion graphics, and high-CTR thumbnail design), and Social Media Channel Management (to ensure your message reaches the right audience at the right time).' data-ar='نحن نعمل كشريك استراتيجي في رحلتك، حيث تشمل خدماتنا: تطوير المحتوى الاستراتيجي (بدءاً من توليد فكرة الفيديو وصولاً إلى كتابة سكريبت احترافي يضمن أعلى نسبة تحويل)، الإدارة الكاملة للهوية البصرية (مونتاج احترافي، موشن جرافيك متقدم، وتصميم صور مصغرة ترفع نسبة النقر)، وإدارة قنوات السوشيال ميديا (لضمان وصول رسالتك للجمهور الصحيح في الوقت المناسب).'>We operate as a strategic partner in your journey, where our services include: Strategic Content Development (from idea generation to professional scriptwriting), Full Visual Identity Management (professional editing, motion graphics, and high-CTR thumbnail design), and Social Media Channel Management (to ensure your message reaches the right audience at the right time).</p>
+            <p data-en='At ZENIX, we believe that investing in editing is a direct investment in the value of your product and brand. Our mission is to help clients (content creators, teachers, and business owners) multiply their views, impact, and sales through content crafted with a genuine feel that reaches the audience directly.' data-ar='في ZENIX، نحن نؤمن بأن الاستثمار في المونتاج هو استثمار مباشر في قيمة منتجك وعلامتك التجارية. مهمتنا هي مساعدة العملاء (صناع محتوى، مدرسين، وأصحاب أعمال) على مضاعفة مشاهداتهم وتأثيرهم ومبيعاتهم عبر محتوى مصنوع بإحساس يصل مباشرة إلى الجمهور.'>At ZENIX, we believe that **investing in editing is a direct investment in the value of your product and brand**. Our mission is to help clients multiply their views, impact, and sales through content crafted with a genuine feel that reaches the audience directly.</p>
+        </div>
+    </section>
+
+    <section class="section" id="services" style="background: var(--card-bg);">
+        <h2 class="section-title" data-en="Core Capabilities" data-ar="قدراتنا الأساسية">Core Capabilities</h2>
+        <p class="section-subtitle" data-en="Integrated services for a unified digital presence." data-ar="خدمات متكاملة لوجود رقمي موحد.">Integrated services for a unified digital presence.</p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                <h3>Strategic Content Development</h3>
+                <p>Idea generation, scriptwriting, and content planning to ensure maximum impact and conversion rates.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-video"></i></div>
+                <h3>Professional Video Editing</h3>
+                <p>High-retention editing for YouTube, Reels, and TikTok, including advanced sound and color grading.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-palette"></i></div>
+                <h3>Visual Identity & Motion</h3>
+                <p>Motion Graphics, advanced VFX, and compelling thumbnail design for high click-through rates (CTR).</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-users"></i></div>
+                <h3>Social Media Management</h3>
+                <p>Full platform management, scheduling, engagement optimization, and performance reporting.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="projects">
+        <h2 class="section-title" data-en="Our Latest Work" data-ar="أحدث أعمالنا">Our Latest Work</h2>
+        <p class="section-subtitle" data-en="A selection of projects where strategy meets execution." data-ar="مختارات من المشاريع التي جمعت الاستراتيجية والتنفيذ.">A selection of projects where strategy meets execution.</p>
+        
+        <div class="projects-grid">
+            <div class="project-item">
+                <img src="https://via.placeholder.com/600x400/1e1e1e/FF7F50?text=Project+Alpha" alt="Project Alpha Thumbnail">
+                <div class="project-info">
+                    <h4>YouTube Growth Strategy</h4>
+                    <p>Comprehensive growth campaign resulting in 40% subscriber increase within 3 months.</p>
+                </div>
+            </div>
+            <div class="project-item">
+                <img src="https://via.placeholder.com/600x400/1e1e1e/FFD700?text=Project+Beta" alt="Project Beta Thumbnail">
+                <div class="project-info">
+                    <h4>Brand Launch Video</h4>
+                    <p>Cinematic editing and motion graphics for a B2B product launch across all social platforms.</p>
+                </div>
+            </div>
+            <div class="project-item">
+                <img src="https://via.placeholder.com/600x400/1e1e1e/FF7F50?text=Project+Gamma" alt="Project Gamma Thumbnail">
+                <div class="project-info">
+                    <h4>High-Retention Reels Series</h4>
+                    <p>Designed and edited a 10-part educational Reels series achieving 90%+ retention rates.</p>
+                </div>
+            </div>
+             <div class="project-item">
+                <img src="https://via.placeholder.com/600x400/1e1e1e/FFD700?text=Project+Delta" alt="Project Delta Thumbnail">
+                <div class="project-info">
+                    <h4>Corporate Explainer Video</h4>
+                    <p>Scriptwriting and complex Motion Graphic animation for a corporate service explanation.</p>
+                </div>
+            </div>
+             <div class="project-item">
+                <img src="https://via.placeholder.com/600x400/1e1e1e/FF7F50?text=Project+Epsilon" alt="Project Epsilon Thumbnail">
+                <div class="project-info">
+                    <h4>E-commerce Ad Creative</h4>
+                    <p>Designed and edited compelling video ad creative that tripled the client's return on ad spend (ROAS).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="pricing" style="background: var(--card-bg);">
+        <h2 class="section-title" data-en="Pricing & Offers" data-ar="الأسعار والعروض">Pricing & Offers</h2>
+        <p class="section-subtitle" data-en="YouTube Growth Packages - Focused on quality, strategy, and promotion." data-ar="باقات نمو اليوتيوب - تركز على الجودة، الاستراتيجية، والترويج.">YouTube Growth Packages - Focused on quality, strategy, and promotion.</p>
+
+        <div class="pricing-table">
+            
+            <div class="pricing-plan">
+                <h3 data-en="Starter Package" data-ar="باقة المبتدئ الواثق">Starter Package</h3>
+                <div class="price">$550 - $800 <span>/ Month</span></div>
+                <ul class="features">
+                    <li><i class="fa-solid fa-check"></i> <span data-en="4 Videos/Month (Max 10 min)" data-ar="4 فيديوهات شهرياً (حد أقصى 10 دقائق)">4 Videos/Month (Max 10 min)</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span data-en="4 Basic Content Ideas" data-ar="4 أفكار محتوى أساسية">4 Basic Content Ideas</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span data-en="Basic Scripting (Review & Edit)" data-ar="سكريبت أساسي (مراجعة وتعديل)">Basic Scripting (Review & Edit)</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span data-en="Standard Editing Quality" data-ar="جودة مونتاج قياسية">Standard Editing Quality</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span data-en="4 Standard Thumbnails" data-ar="4 صور مصغرة قياسية">4 Standard Thumbnails</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span data-en="Basic Publishing Support (SEO Tags)" data-ar="دعم النشر الأساسي (وسوم SEO)">Basic Publishing Support (SEO Tags)</span></li>
+                </ul>
+                <a href="#contact" class="contact-btn package-btn" data-en="Choose Plan" data-ar="اختر الباقة">Choose Plan</a>
+            </div>
+            
+            <div class="pricing-plan" style="border-color: var(--primary); background: #1a1a1a;">
+                <h3 data-en="Pro Package" data-ar="باقة المحترف الصاعد" style="color:var(--primary);">Pro Package</h3>
+                <div class="price" style="color:var(--primary);">$1,100 - $1,800 <span>/ Month</span></div>
+                <ul class="features">
+                    <li><i class="fa-solid fa-star" style="color:var(--primary);"></i> <span data-en="8 Videos/Month (Max 15 min)" data-ar="8 فيديوهات شهرياً (حد أقصى 15 دقيقة)">8 Videos/Month (Max 15 min)</span></li>
+                    <li><i class="fa-solid fa-star" style="color:var(--primary);"></i> <span data-en="8 Strategic Content Ideas" data-ar="8 أفكار محتوى استراتيجية">8 Strategic Content Ideas</span></li>
+                    <li><i class="fa-solid fa-star" style="color:var(--primary);"></i> <span data-en="Professional Scripting (Strong Hook)" data-ar="سكريبت احترافي (Hook قوي)">Professional Scripting (Strong Hook)</span></li>
+                    <li><i class="fa-solid fa-star" style="color:var(--primary);"></i> <span data-en="Advanced Editing (Motion Graphics, Grading)" data-ar="مونتاج متقدم (موشن جرافيك، تلوين)">Advanced Editing (Motion Graphics, Grading)</span></li>
+                    <li><i class="fa-solid fa-star" style="color:var(--primary);"></i> <span data-en="8 High-CTR Thumbnails" data-ar="8 صور مصغرة بمعدل نقر مرتفع">8 High-CTR Thumbnails</span></li>
+                    <li><i class="fa-solid fa-star" style="color:var(--primary);"></i> <span data-en="Weekly Performance Analysis + Simple Promotion Plan" data-ar="تحليل أداء أسبوعي + خطة ترويج بسيطة">Weekly Performance Analysis + Simple Promotion Plan</span></li>
+                </ul>
+                <a href="#contact" class="contact-btn package-btn" data-en="Choose Plan" data-ar="اختر الباقة" style="background: var(--primary);">Choose Plan</a>
+            </div>
+
+            <div class="pricing-plan">
+                <h3 data-en="Elite Package" data-ar="باقة البراند المتكامل">Elite Package</h3>
+                <div class="price">$2,500 - $4,500+ <span>/ Month</span></div>
+                <ul class="features">
+                    <li><i class="fa-solid fa-rocket"></i> <span data-en="12 Videos/Month (Max 20 min)" data-ar="12 فيديو شهرياً (حد أقصى 20 دقيقة)">12 Videos/Month (Max 20 min)</span></li>
+                    <li><i class="fa-solid fa-rocket"></i> <span data-en="Monthly Content Strategy (30 days)" data-ar="تخطيط استراتيجي شهري للمحتوى">Monthly Content Strategy (30 days)</span></li>
+                    <li><i class="fa-solid fa-rocket"></i> <span data-en="Full Scriptwriting & SEO Optimization" data-ar="كتابة سكريبت وتحسين كامل للـ SEO">Full Scriptwriting & SEO Optimization</span></li>
+                    <li><i class="fa-solid fa-rocket"></i> <span data-en="Cinematic/Branded Editing" data-ar="مونتاج سينمائي/خاص للبراند">Cinematic/Branded Editing</span></li>
+                    <li><i class="fa-solid fa-rocket"></i> <span data-en="12 Creative/Enhanced Thumbnails" data-ar="12 صورة مصغرة إبداعية ومعززة">12 Creative/Enhanced Thumbnails</span></li>
+                    <li><i class="fa-solid fa-rocket"></i> <span data-en="Marketing Strategy & Ad Setup on 2 Platforms" data-ar="إدارة استراتيجية التسويق وإعداد الإعلانات على منصتين">Marketing Strategy & Ad Setup on 2 Platforms</span></li>
+                </ul>
+                <a href="#contact" class="contact-btn package-btn" data-en="Choose Plan" data-ar="اختر الباقة">Choose Plan</a>
+            </div>
+        </div>
+
+        <div class="per-project-table">
+            <h4 data-en="Per Project / A La Carte Services" data-ar="الخدمات الفردية / حسب المشروع">Per Project / A La Carte Services</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th data-en="Service" data-ar="الخدمة">Service</th>
+                        <th data-en="Price Range" data-ar="نطاق السعر">Price Range</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-en="Long Video Editing (Per 5 min finished video)" data-ar="مونتاج فيديوهات طويلة (لكل 5 دقائق فيديو نهائي)">Long Video Editing (Per 5 min finished video)</td>
+                        <td>$40 - $70</td>
+                    </tr>
+                    <tr>
+                        <td data-en="Reels/Shorts Editing (Per finished video, Max 60 sec)" data-ar="مونتاج Reels/Shorts (لكل فيديو نهائي، حد أقصى 60 ثانية)">Reels/Shorts Editing (Per finished video, Max 60 sec)</td>
+                        <td>$15 - $20</td>
+                    </tr>
+                    <tr>
+                        <td data-en="Thumbnail Design (Per image)" data-ar="تصميم صورة مصغرة (لكل صورة)">Thumbnail Design (Per image)</td>
+                        <td>$20 - $40</td>
+                    </tr>
+                    <tr>
+                        <td data-en="Scriptwriting (5 - 20 min video)" data-ar="كتابة سكريبت فيديو (5 - 20 دقيقة)">Scriptwriting (5 - 20 min video)</td>
+                        <td>$50 - $200</td>
+                    </tr>
+                    <tr>
+                        <td data-en="Reels Scriptwriting (20 sec - 1 min)" data-ar="سكريبت فيديو ريلز (20 ثانية - 1 دقيقة)">Reels Scriptwriting (20 sec - 1 min)</td>
+                        <td>$20 - $50</td>
+                    </tr>
+                    <tr>
+                        <td data-en="Motion Graphics / Intro (Per piece)" data-ar="موشن جرافيك / مقدمة (للقطعة الواحدة)">Motion Graphics / Intro (Per piece)</td>
+                        <td>Starts from $150</td>
+                    </tr>
+                    <tr>
+                        <td data-en="Color Grading Only (Per finished minute)" data-ar="Color Grading فقط (لكل دقيقة من الفيديو النهائي)">Color Grading Only (Per finished minute)</td>
+                        <td>$30 - $50</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="section" id="testimonials">
+        <h2 class="section-title" data-en="Client Testimonials" data-ar="آراء العملاء">Client Testimonials</h2>
+        <p class="section-subtitle" data-en="Real success stories built with ZENIX strategy." data-ar="قصص نجاح حقيقية بنيت باستراتيجية ZENIX.">Real success stories built with ZENIX strategy.</p>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <blockquote data-en="ZENIX transformed our brand's message into cinematic visuals. The content strategy alone was worth the investment." data-ar="ZENIX حولت رسالة علامتنا التجارية إلى صور سينمائية. وكانت استراتيجية المحتوى وحدها تستحق هذا الاستثمار.">"ZENIX transformed our brand's message into cinematic visuals. The content strategy alone was worth the investment."</blockquote>
+                <div class="client-info">
+                    <strong>Ahmed B.</strong> <span>Marketing Director, Tech Firm</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <blockquote data-en="Our YouTube views doubled after implementing their scripting and thumbnail design service. Highly recommended." data-ar="تضاعفت مشاهدات قناتنا على اليوتيوب بعد تطبيق خدمة كتابة السكريبت وتصميم الصورة المصغرة التي قدموها. أوصي بهم بشدة.">"Our YouTube views doubled after implementing their scripting and thumbnail design service. Highly recommended."</blockquote>
+                <div class="client-info">
+                    <strong>Sarah M.</strong> <span>Content Creator</span>
+                </div>
+            </div>
+             <div class="testimonial-card">
+                <blockquote data-en="The Full Visual Identity package gave us the professional edge we desperately needed. Flawless execution." data-ar="باقة الهوية البصرية المتكاملة منحتنا الميزة الاحترافية التي كنا في أمس الحاجة إليها. التنفيذ كان لا تشوبه شائبة.">"The Full Visual Identity package gave us the professional edge we desperately needed. Flawless execution."</blockquote>
+                <div class="client-info">
+                    <strong>Dr. Khalid H.</strong> <span>Educational Consultant</span>
+                </div>
+            </div>
+             <div class="testimonial-card">
+                <blockquote data-en="They mastered the 3-second rule! Our Reel retention rates are off the charts, leading to massive profile growth." data-ar="لقد أتقنوا قاعدة الـ 3 ثواني! معدلات الاحتفاظ في الريلز لدينا فاقت التوقعات، مما أدى إلى نمو هائل في ملفنا الشخصي.">"They mastered the 3-second rule! Our Reel retention rates are off the charts, leading to massive profile growth."</blockquote>
+                <div class="client-info">
+                    <strong>Fatima R.</strong> <span>E-commerce Founder</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <blockquote data-en="The Pro Package is the best investment we made. We got quality, quantity, and strategy all in one place." data-ar="باقة المحترف الصاعد هي أفضل استثمار قمنا به. حصلنا على الجودة، الكمية، والاستراتيجية، كل ذلك في مكان واحد.">"The Pro Package is the best investment we made. We got quality, quantity, and strategy all in one place."</blockquote>
+                <div class="client-info">
+                    <strong>Mohamed G.</strong> <span>Marketing Manager</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <blockquote data-en="Their Motion Graphics work is top-tier. It elevates complex data into easily digestible and highly engaging content." data-ar="عملهم في الموشن جرافيك من الدرجة الأولى. إنه يرتقي بالبيانات المعقدة إلى محتوى سهل الهضم وجذاب للغاية.">"Their Motion Graphics work is top-tier. It elevates complex data into easily digestible and highly engaging content."</blockquote>
+                <div class="client-info">
+                    <strong>Amr F.</strong> <span>Financial Analyst</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <blockquote data-en="True partnership. ZENIX handles our entire content pipeline, allowing us to focus purely on the core business." data-ar="شراكة حقيقية. ZENIX تتولى خط إنتاج المحتوى بالكامل، مما سمح لنا بالتركيز على العمل الأساسي.">"True partnership. ZENIX handles our entire content pipeline, allowing us to focus purely on the core business."</blockquote>
+                <div class="client-info">
+                    <strong>Nour E.</strong> <span>CEO, Startup</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2 style="margin-bottom:20px; font-size: 2rem;" data-en="Ready to Scale Your Influence?" data-ar="هل أنت مستعد لتوسيع نفوذك؟">Ready to Scale Your Influence?</h2>
+        <p style="margin-bottom:30px; color:var(--text-gray);" data-en="Let's build a content strategy that guarantees massive growth. Contact us today." data-ar="دعنا نبني استراتيجية محتوى تضمن نمواً هائلاً. تواصل معنا اليوم.">Let's build a content strategy that guarantees massive growth. Contact us today.</p>
+        
+        <a href="mailto:contact@zenixagency.com" class="contact-btn" style="margin-bottom:30px;" data-en="Email Us" data-ar="راسلنا عبر البريد الإلكتروني">Email Us</a>
+        
+        <div class="social-icons">
+             <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+             <a href="#"><i class="fa-brands fa-instagram"></i></a>
+             <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+             <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        
+        <p style="font-size:0.9rem; color:#555;">ZENIX Agency &copy; 2025 | Content Architects</p>
+    </footer>
+
+    <script>
+        function toggleLanguage() {
+            const body = document.getElementById('body');
+            const currentLang = body.getAttribute('data-lang');
+            const newLang = currentLang === 'en' ? 'ar' : 'en';
+            
+            body.setAttribute('data-lang', newLang);
+            body.setAttribute('dir', newLang === 'ar' ? 'rtl' : 'ltr');
+            
+            const elements = document.querySelectorAll('[data-en], [data-ar]');
+            
+            elements.forEach(element => {
+                const translation = element.getAttribute(`data-${newLang}`);
+                if (translation) {
+                    element.textContent = translation;
+                }
+            });
+
+            // Handle the button text specifically
+            const langButton = document.querySelector('.lang-toggle');
+            if (newLang === 'ar') {
+                langButton.textContent = 'English';
+            } else {
+                langButton.textContent = 'عربي';
+            }
+        }
+    </script>
+
+</body>
+</html>
