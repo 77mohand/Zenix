@@ -355,7 +355,11 @@
     </style>
 </head>
 <body id="body" data-lang="en">
-
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+    
+    <script type="module" src="backend.js"></script>
+    
     <header>
         <div class="logo">ZENIX <span>Agency</span></div>
         <nav>
@@ -371,6 +375,34 @@
         <div class="actions">
             <button class="lang-toggle" onclick="toggleLanguage()" data-en="عربي" data-ar="English">عربي</button>
             <a href="#contact" class="contact-btn" data-en="Get Started" data-ar="ابدأ الآن">Get Started</a>
+
+            <div class="user-actions" style="display:flex; align-items:center; gap:15px;">
+    <div class="cart-icon" onclick="toggleCart()" style="position:relative; cursor:pointer;">
+        <i class="fa-solid fa-cart-shopping" style="color:var(--text-light); font-size:1.2rem;"></i>
+        <span id="cart-count" style="position:absolute; top:-10px; right:-10px; background:var(--primary); color:#000; font-size:0.7rem; padding:2px 6px; border-radius:50%;">0</span>
+    </div>
+
+    <button id="login-btn" onclick="loginWithGoogle()" class="btn-accent" style="padding:5px 15px; font-size:0.9rem;">Login</button>
+    
+    <div id="user-info" style="display:none; align-items:center; gap:10px;">
+        <img id="user-img" src="" style="width:35px; height:35px; border-radius:50%; border:2px solid var(--primary);">
+        <button onclick="logout()" style="background:none; border:none; color:var(--text-gray); cursor:pointer;">Logout</button>
+    </div>
+</div>
+
+<div id="cart-sidebar" style="position:fixed; right:-400px; top:0; width:350px; height:100vh; background:#111; z-index:2000; padding:20px; transition:0.3s; border-left:1px solid var(--primary); overflow-y:auto;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+        <h3 style="color:var(--primary);">Your Cart</h3>
+        <button onclick="toggleCart()" style="background:none; border:none; color:#fff; font-size:1.5rem; cursor:pointer;">&times;</button>
+    </div>
+    <div id="cart-items">
+        <p style="color:var(--text-gray);">Cart is empty.</p>
+    </div>
+    <div style="margin-top:30px; border-top:1px solid #333; padding-top:20px;">
+        <h4 style="color:#fff; display:flex; justify-content:space-between;">Total: <span id="cart-total">$0</span></h4>
+        <button onclick="checkout()" class="contact-btn" style="width:100%; margin-top:15px;">Checkout (Stripe)</button>
+    </div>
+</div>
         </div>
     </header>
 
@@ -492,6 +524,7 @@
                     <li><i class="fa-solid fa-check"></i> <span data-en="Basic Publishing Support (SEO Tags)" data-ar="دعم النشر الأساسي (وسوم SEO)">Basic Publishing Support (SEO Tags)</span></li>
                 </ul>
                 <a href="#contact" class="contact-btn package-btn" data-en="Choose Plan" data-ar="اختر الباقة">Choose Plan</a>
+                <button onclick="addToCart('Starter Package', 550)" class="contact-btn package-btn">Add to Cart</button>
             </div>
             
             <div class="pricing-plan" style="border-color: var(--primary); background: #1a1a1a;">
@@ -506,6 +539,7 @@
                     <li><i class="fa-solid fa-star" style="color:var(--primary);"></i> <span data-en="Weekly Performance Analysis + Simple Promotion Plan" data-ar="تحليل أداء أسبوعي + خطة ترويج بسيطة">Weekly Performance Analysis + Simple Promotion Plan</span></li>
                 </ul>
                 <a href="#contact" class="contact-btn package-btn" data-en="Choose Plan" data-ar="اختر الباقة" style="background: var(--primary);">Choose Plan</a>
+                <button onclick="addToCart('Pro Package', 1100)" class="contact-btn package-btn">Add to Cart</button>
             </div>
 
             <div class="pricing-plan">
@@ -520,6 +554,7 @@
                     <li><i class="fa-solid fa-rocket"></i> <span data-en="Marketing Strategy & Ad Setup on 2 Platforms" data-ar="إدارة استراتيجية التسويق وإعداد الإعلانات على منصتين">Marketing Strategy & Ad Setup on 2 Platforms</span></li>
                 </ul>
                 <a href="#contact" class="contact-btn package-btn" data-en="Choose Plan" data-ar="اختر الباقة">Choose Plan</a>
+                <button onclick="addToCart('Elite Package', 2500)" class="contact-btn package-btn">Add to Cart</button>
             </div>
         </div>
 
@@ -626,10 +661,13 @@
                 const text = element.getAttribute('data-' + newLang);
                 if (element.tagName === 'A' || element.tagName === 'BUTTON') {
                     element.textContent = text;
-                } else if (element.tagName === 'H2' || element.tagName === 'H3' || element.tagName === 'P') {
-                    element.innerHTML = text;
-                } else if (element.tagName === 'SPAN') {
-                    element.textContent = text;
+                } else if (element.tagName === 'H2' || element.tagName === 'H3' || element.tagName === 'P' || element.tagName === 'SPAN') {
+                    // تم تجميع الـ H2 و H3 و P و SPAN هنا لتطبيق innerHTML/textContent
+                    if (element.tagName === 'SPAN' && element.closest('.features')) {
+                         element.textContent = text;
+                    } else {
+                         element.innerHTML = text;
+                    }
                 }
             });
 
